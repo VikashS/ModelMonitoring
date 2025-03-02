@@ -1,5 +1,5 @@
 class DataQualityException(Exception):
-    """Custom exception raised when a hard data quality rule is violated."""
+    """Custom exception raised when a hard data quality rule is violated at runtime."""
 
     def __init__(
         self,
