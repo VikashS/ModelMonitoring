@@ -4,8 +4,8 @@ from pyspark.sql import DataFrame
 
 class BaseQualityCheck(ABC):
 
-    def __init__(self,severity:str="soft"):
-        self.severity=severity.lower()
+    def __init__(self, severity: str = "soft"):
+        self.severity = severity.lower()
 
     @abstractmethod
     def execute(self, df: DataFrame) -> tuple[DataFrame, dict]:
@@ -17,5 +17,5 @@ class BaseQualityCheck(ABC):
         """Return the name of the quality check"""
         pass
 
-    def is_hard_rule(self)-> bool:
+    def is_hard_rule(self) -> bool:
         return self.severity == "hard"

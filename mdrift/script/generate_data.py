@@ -1,6 +1,12 @@
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import col, expr
-from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DoubleType
+from pyspark.sql.types import (
+    StructType,
+    StructField,
+    IntegerType,
+    StringType,
+    DoubleType,
+)
 import random
 from datetime import datetime, timedelta
 import os
@@ -14,13 +20,17 @@ def generate_timestamp(start_date: datetime, days_range: int) -> str:
     return new_date.strftime("%Y-%m-%d %H:%M:%S")
 
 
-def create_passing_data(spark: SparkSession, output_path: str, num_rows: int = 1000) -> None:
+def create_passing_data(
+    spark: SparkSession, output_path: str, num_rows: int = 1000
+) -> None:
     """Generate data that passes all quality checks."""
-    schema = StructType([
-        StructField("id", IntegerType(), False),
-        StructField("timestamp", StringType(), False),
-        StructField("value", DoubleType(), False)
-    ])
+    schema = StructType(
+        [
+            StructField("id", IntegerType(), False),
+            StructField("timestamp", StringType(), False),
+            StructField("value", DoubleType(), False),
+        ]
+    )
 
     start_date = datetime(2023, 1, 1)
 
@@ -29,7 +39,7 @@ def create_passing_data(spark: SparkSession, output_path: str, num_rows: int = 1
         (
             i,
             generate_timestamp(start_date, 365),
-            random.uniform(0.0, 4166.66)  # Max value * 1.2 <= 5000
+            random.uniform(0.0, 4166.66),  # Max value * 1.2 <= 5000
         )
         for i in range(num_rows)
     ]
@@ -39,13 +49,17 @@ def create_passing_data(spark: SparkSession, output_path: str, num_rows: int = 1
     print(f"Generated passing data with {num_rows} rows at {output_path}")
 
 
-def create_failing_data(spark: SparkSession, output_path: str, num_rows: int = 1000) -> None:
+def create_failing_data(
+    spark: SparkSession, output_path: str, num_rows: int = 1000
+) -> None:
     """Generate data that fails some quality checks."""
-    schema = StructType([
-        StructField("id", IntegerType(), True),  # Allow nulls
-        StructField("timestamp", StringType(), True),  # Allow nulls
-        StructField("value", DoubleType(), True)  # Allow nulls
-    ])
+    schema = StructType(
+        [
+            StructField("id", IntegerType(), True),  # Allow nulls
+            StructField("timestamp", StringType(), True),  # Allow nulls
+            StructField("value", DoubleType(), True),  # Allow nulls
+        ]
+    )
 
     start_date = datetime(2023, 1, 1)
 
@@ -54,11 +68,13 @@ def create_failing_data(spark: SparkSession, output_path: str, num_rows: int = 1
     for i in range(num_rows):
         id_val = i if random.random() > 0.1 else None  # 10% null IDs
         ts_val = (
-            generate_timestamp(start_date, 365) if random.random() > 0.05
+            generate_timestamp(start_date, 365)
+            if random.random() > 0.05
             else "2023-13-45"  # 5% invalid timestamps
         )
         val = (
-            random.uniform(0.0, 6000.0) if random.random() > 0.15  # Some values > 4166.66
+            random.uniform(0.0, 6000.0)
+            if random.random() > 0.15  # Some values > 4166.66
             else None  # 15% null values
         )
         data.append((id_val, ts_val, val))

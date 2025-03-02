@@ -1,8 +1,13 @@
-
 class DataQualityException(Exception):
     """Custom exception raised when a hard data quality rule is violated."""
 
-    def __init__(self, message: str, rule_name: str = None, stage: str = None, results: dict = None):
+    def __init__(
+        self,
+        message: str,
+        rule_name: str = None,
+        stage: str = None,
+        results: dict = None,
+    ):
         """
         Initialize the exception with details about the violation.
 
@@ -19,7 +24,9 @@ class DataQualityException(Exception):
         # Construct detailed message
         full_message = message
         if rule_name and stage:
-            full_message = f"Hard rule '{rule_name}' failed at stage '{stage}': {message}"
+            full_message = (
+                f"Hard rule '{rule_name}' failed at stage '{stage}': {message}"
+            )
         if results:
             full_message += f" (Results: {results})"
 

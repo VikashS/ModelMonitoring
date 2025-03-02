@@ -1,5 +1,6 @@
 from pyspark.sql import DataFrame
 
+
 class Preprocessor:
     def process(self, df: DataFrame) -> DataFrame:
         # Add preprocessing logic here

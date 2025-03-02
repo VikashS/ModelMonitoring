@@ -4,7 +4,7 @@ from mdrift.checks.base_check import BaseQualityCheck
 
 
 class DuplicateCheck(BaseQualityCheck):
-    def __init__(self, key_columns: list,severity:str="soft"):
+    def __init__(self, key_columns: list, severity: str = "soft"):
         super().__init__(severity)
         self.key_columns = key_columns
 
@@ -16,7 +16,7 @@ class DuplicateCheck(BaseQualityCheck):
         results = {
             "total_records": total_count,
             "duplicate_records": duplicate_count,
-            "duplicate_percentage": (duplicate_count / total_count) * 100
+            "duplicate_percentage": (duplicate_count / total_count) * 100,
         }
         return df, results
 

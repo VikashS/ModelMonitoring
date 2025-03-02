@@ -4,7 +4,7 @@ from mdrift.checks.base_check import BaseQualityCheck
 
 
 class NullCheck(BaseQualityCheck):
-    def __init__(self, columns: list,severity:str="soft"):
+    def __init__(self, columns: list, severity: str = "soft"):
         super().__init__(severity)
         self.columns = columns
 

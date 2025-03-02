@@ -24,18 +24,18 @@ def main():
     quality_checks = [
         NullCheck(
             columns=QUALITY_CHECKS["null_check"]["columns"],
-            severity=QUALITY_CHECKS["null_check"]["severity"]
+            severity=QUALITY_CHECKS["null_check"]["severity"],
         ),
         DuplicateCheck(
             key_columns=QUALITY_CHECKS["duplicate_check"]["columns"],
-            severity=QUALITY_CHECKS["duplicate_check"]["severity"]
+            severity=QUALITY_CHECKS["duplicate_check"]["severity"],
         ),
         RangeCheck(
             column=QUALITY_CHECKS["range_check"]["column"],
             min_val=QUALITY_CHECKS["range_check"]["min"],
             max_val=QUALITY_CHECKS["range_check"]["max"],
-            severity=QUALITY_CHECKS["range_check"]["severity"]
-        )
+            severity=QUALITY_CHECKS["range_check"]["severity"],
+        ),
     ]
 
     # Create and run pipeline
