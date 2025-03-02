@@ -3,7 +3,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "drift"
+name = "mdrift"
 version = "0.1.0"
 description = "Dritness check"
 authors = [
@@ -14,7 +14,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "pyspark>=3.4.1",
-    "pandas>1.5.0"
+    "pyyaml"
 ]
 
 [project.urls]

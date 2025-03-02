@@ -1,0 +1,11 @@
+id,name,value,category
+1,John,25,A
+2,Mary,,B
+3,Peter,150,C
+1,John,25,A
+4,Jane,-5,B
+5,Alice,75,C
+6,Bob,50,
+,Tom,30,A
+8,Susan,200,B
+9,Emma,45,C
