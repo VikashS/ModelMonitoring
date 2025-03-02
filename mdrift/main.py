@@ -19,7 +19,6 @@ def main():
     preprocessor = Preprocessor()
     transformer = Transformer()
 
-    # Initialize quality checks
     # Initialize quality checks with severity from config
     quality_checks = [
         NullCheck(
